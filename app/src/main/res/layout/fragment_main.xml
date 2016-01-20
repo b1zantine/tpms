@@ -10,15 +10,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <android.support.v7.widget.GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:columnCount="2"
-            app:rowCount="2"
-            android:layout_weight="4">
+            app:rowCount="2">
 
             <LinearLayout
                 app:layout_columnWeight="1"
@@ -91,6 +90,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/Gray_Unit"/>
                 </LinearLayout>
+                <include layout="@layout/indicators"/>
             </LinearLayout>
             <LinearLayout
                 app:layout_columnWeight="1"
@@ -100,6 +100,7 @@
                 app:layout_column="1"
                 android:padding="5dp"
                 android:orientation="vertical"
+                android:gravity="right"
                 android:background="@drawable/border_bottom">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -165,7 +166,9 @@
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                 </LinearLayout>
+                <include layout="@layout/indicators"/>
             </LinearLayout>
+
             <LinearLayout
                 app:layout_columnWeight="1"
                 app:layout_columnSpan="1"
@@ -176,6 +179,8 @@
                 android:orientation="vertical"
                 android:gravity="bottom"
                 android:background="@drawable/border_bottom_right">
+
+                <include layout="@layout/indicators"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -248,8 +253,11 @@
                 app:layout_column="1"
                 android:padding="5dp"
                 android:orientation="vertical"
-                android:gravity="bottom"
+                android:gravity="right"
                 android:background="@drawable/border_bottom">
+
+                <include layout="@layout/indicators"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -316,10 +324,109 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="10dp"
+            android:background="@color/Green"/>
 
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10px">
+            <TextView
+                android:id="@+id/spare_text"
+                android:layout_width="22dp"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:background="@drawable/rounded_rect"
+                android:text="Spare"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/LightGray"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerInParent="true">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="left">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="7dp"
+                        android:text="200"
+                        android:textSize="35sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/Green"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="top"
+                        android:paddingLeft="5dp"
+                        android:text="PSI"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/Gray_Unit"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:paddingLeft="7dp"
+                        android:text="74"
+                        android:textSize="35sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/Green"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="top"
+                        android:paddingLeft="5dp"
+                        android:text="°C"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/Gray_Unit"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_rect"
+            android:layout_alignParentRight="true">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="3dp"
+                android:src="@mipmap/ic_settings_white_24dp"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="3dp"
+                android:src="@mipmap/ic_settings_white_24dp"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="3dp"
+                android:src="@mipmap/ic_settings_white_24dp"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="3dp"
+                android:src="@mipmap/ic_settings_white_24dp"/>
         </LinearLayout>
+
+        </RelativeLayout>
     </LinearLayout>
 
 </RelativeLayout>

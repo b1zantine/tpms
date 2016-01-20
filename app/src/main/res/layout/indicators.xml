@@ -1,47 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                      android:layout_width="match_parent"
-                                      android:layout_height="match_parent"
-                                      xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <LinearLayout
-        app:layout_gravity="fill"
-        app:layout_rowWeight="1"
-        app:layout_columnSpan="1"
-        app:layout_rowSpan="1"
-        app:layout_row="0"
-        app:layout_column="0"
-        android:orientation="vertical"
-        android:background="@color/colorAccent">
-    </LinearLayout>
-    <LinearLayout
-        app:layout_gravity="fill"
-        app:layout_rowWeight="1"
-        app:layout_columnSpan="1"
-        app:layout_rowSpan="1"
-        app:layout_row="0"
-        app:layout_column="1">
-
-    </LinearLayout>
-    <LinearLayout
-        app:layout_gravity="fill"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
-        app:layout_columnSpan="1"
-        app:layout_rowSpan="1"
-        app:layout_row="1"
-        app:layout_column="0">
-
-    </LinearLayout>
-    <LinearLayout
-        app:layout_gravity="fill"
-        app:layout_columnWeight="1"
-        app:layout_columnSpan="1"
-        app:layout_rowSpan="1"
-        app:layout_row="1"
-        app:layout_column="1"
-        android:background="@color/colorAccent">
-
-    </LinearLayout>
-
-</android.support.v7.widget.GridLayout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:orientation="horizontal"
+    android:background="@drawable/rounded_rect"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="3dp"
+        android:src="@mipmap/ic_settings_white_24dp"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="3dp"
+        android:src="@mipmap/ic_settings_white_24dp"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="3dp"
+        android:src="@mipmap/ic_settings_white_24dp"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="3dp"
+        android:src="@mipmap/ic_settings_white_24dp"/>
+</LinearLayout>
