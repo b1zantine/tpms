@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import pl.pawelkleczkowski.customgauge.CustomGauge;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -26,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        CustomGauge gauge1 = (CustomGauge) findViewById(R.id.gauge1);
+        CustomGauge gauge2 = (CustomGauge) findViewById(R.id.gauge2);
+        gauge1.setValue(800);
+        gauge2.setValue(500);
     }
 
     @Override
