@@ -1,1 +1,1 @@
-include ':app', ':CustomGauge'
+include ':app'
