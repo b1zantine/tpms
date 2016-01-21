@@ -3,10 +3,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@color/DarkGray_BG"
+                android:background="@color/BGColor"
                 tools:context="me.sudar.tpms.MainActivityFragment"
                 tools:showIn="@layout/activity_main">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,7 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="7dp"
-                        android:text="74"
+                        android:text="60"
                         android:textSize="35sp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
@@ -324,7 +323,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_height="7dp"
             android:background="@color/Green"/>
 
 
@@ -398,33 +397,33 @@
                 </LinearLayout>
             </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_rect"
-            android:layout_alignParentRight="true">
-            <ImageView
+            <LinearLayout
                 android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:padding="3dp"
-                android:src="@mipmap/ic_settings_white_24dp"/>
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:padding="3dp"
-                android:src="@mipmap/ic_settings_white_24dp"/>
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:padding="3dp"
-                android:src="@mipmap/ic_settings_white_24dp"/>
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:padding="3dp"
-                android:src="@mipmap/ic_settings_white_24dp"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_rect"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="3dp"
+                    android:src="@mipmap/ic_settings_white_24dp"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="3dp"
+                    android:src="@mipmap/ic_settings_white_24dp"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="3dp"
+                    android:src="@mipmap/ic_settings_white_24dp"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="3dp"
+                    android:src="@mipmap/ic_settings_white_24dp"/>
+            </LinearLayout>
 
         </RelativeLayout>
     </LinearLayout>
