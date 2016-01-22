@@ -60,6 +60,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                     <TextView
+                        android:id="@+id/pressure_unit_fl"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="top"
@@ -84,6 +85,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                     <TextView
+                        android:id="@+id/temp_unit_fl"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="top"
@@ -128,6 +130,7 @@
                     android:gravity="end"
                     android:paddingTop="10dp">
                     <TextView
+                        android:id="@+id/pressure_unit_fr"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="top"
@@ -153,6 +156,7 @@
                     android:gravity="end"
                     android:paddingTop="5dp">
                     <TextView
+                        android:id="@+id/temp_unit_fr"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="top"
@@ -202,6 +206,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                     <TextView
+                        android:id="@+id/temp_unit_rl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
@@ -226,6 +231,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                     <TextView
+                        android:id="@+id/pressure_unit_rl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
@@ -272,6 +278,7 @@
                     android:gravity="end"
                     android:paddingBottom="5dp">
                     <TextView
+                        android:id="@+id/temp_unit_rr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingRight="5dp"
@@ -296,6 +303,7 @@
                     android:gravity="end"
                     android:paddingBottom="10dp">
                     <TextView
+                        android:id="@+id/pressure_unit_rr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingRight="5dp"
@@ -386,6 +394,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/Green"/>
                 <TextView
+                    android:id="@+id/pressure_unit_spare"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="top"
@@ -411,6 +420,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/Green"/>
                 <TextView
+                    android:id="@+id/temp_unit_spare"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="top"
