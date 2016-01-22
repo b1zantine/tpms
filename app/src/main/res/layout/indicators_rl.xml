@@ -2,33 +2,33 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="30dp"
+    android:layout_height="@dimen/indicator_size"
     android:orientation="horizontal"
     android:background="@drawable/rounded_rect"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginTop="@dimen/indicator_top_margin"
+    android:layout_marginBottom="@dimen/indicator_bottom_margin">
     <ImageView
         android:id="@+id/battery_icon_rl"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/indicator_size"
+        android:layout_height="@dimen/indicator_size"
         android:padding="3dp"
         android:src="@drawable/battery"/>
     <ImageView
         android:id="@+id/temperature_icon_rl"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/indicator_size"
+        android:layout_height="@dimen/indicator_size"
         android:padding="3dp"
         android:src="@drawable/temp"/>
     <ImageView
         android:id="@+id/pressure_leak_icon_rl"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/indicator_size"
+        android:layout_height="@dimen/indicator_size"
         android:padding="3dp"
         android:src="@drawable/fleak"/>
     <ImageView
         android:id="@+id/pressure_icon_rl"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/indicator_size"
+        android:layout_height="@dimen/indicator_size"
         android:padding="3dp"
         android:src="@drawable/n"/>
 </LinearLayout>
