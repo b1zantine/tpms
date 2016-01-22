@@ -2,4 +2,16 @@
     <string name="app_name">Manatec TPMS</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="deg_celsius">°C</string>
+    <string name="deg_fahrenheit">°F</string>
+    <string name="unit_psi">PSI</string>
+    <string name="unit_bar">BAR</string>
+    <string name="unit_kpa">KPA</string>
+    <string name="front_left">FRONT L.</string>
+    <string name="front_right">FRONT R.</string>
+    <string name="rear_left">REAR L.</string>
+    <string name="rear_right">REAR R.</string>
+    <string name="spare">SPARE</string>
+    <string name="double_dash">--</string>
+    <string name="triple_dash">---</string>
 </resources>
