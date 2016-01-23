@@ -388,10 +388,16 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/min_battery"
                     android:padding="10dp"
-                    android:text="Battery Threshold  "
+                    android:text="Battery Threshold : "
                     android:layout_below="@+id/seekvalue4"
                     android:textColor="#000000"
                     android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"/>
 
                 <EditText
                     android:layout_width="wrap_content"
@@ -402,11 +408,11 @@
                     android:maxLength="1"
                     android:layout_below="@+id/seekvalue4"
                     android:layout_toRightOf="@+id/min_battery"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
                     android:paddingBottom="10dp"
                     android:textSize="20sp"
-                    />
+                    android:textColor="@color/Green"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

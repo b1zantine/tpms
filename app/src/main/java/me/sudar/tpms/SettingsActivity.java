@@ -59,6 +59,8 @@ public class SettingsActivity extends AppCompatActivity{
         setContentView(R.layout.settings_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         sk1 = (SeekBar) findViewById(R.id.seekBar1);
         seekvalue1 = (TextView) findViewById(R.id.seekvalue1);

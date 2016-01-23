@@ -190,7 +190,7 @@
             app:layout_column="0"
             android:padding="5dp"
             android:orientation="vertical"
-            android:background="@drawable/border_bottom_right">
+            android:background="@drawable/border_right">
 
             <include layout="@layout/indicators_rl"/>
 
@@ -270,8 +270,7 @@
             app:layout_column="1"
             android:padding="5dp"
             android:orientation="vertical"
-            android:gravity="end"
-            android:background="@drawable/border_bottom">
+            android:gravity="end">
 
             <include layout="@layout/indicators_rr"/>
 
@@ -446,21 +445,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".75">
+            android:layout_weight=".76">
             <ImageView
                 android:id="@+id/car"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_165sdp"
                 android:src="@drawable/car"
                 android:background="@color/BGColor"
-                android:paddingTop="@dimen/_20sdp"
-                android:paddingBottom="@dimen/_20sdp"
+                android:paddingTop="@dimen/_17sdp"
+                android:paddingBottom="@dimen/_17sdp"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".25"/>
+            android:layout_weight=".24"/>
     </LinearLayout>
 
 </RelativeLayout>
