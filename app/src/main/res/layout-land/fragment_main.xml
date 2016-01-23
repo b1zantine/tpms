@@ -1,4 +1,4 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,58 +7,59 @@
     tools:showIn="@layout/activity_main"
     tools:ignore="ContentDescription"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        app:columnCount="3"
+        app:rowCount="2">
 
-        <android.support.v7.widget.GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:columnCount="2"
-            app:rowCount="2">
-
+        <LinearLayout
+            android:id="@+id/fl_box"
+            app:layout_columnWeight="2"
+            app:layout_rowWeight="1"
+            app:layout_row="0"
+            app:layout_column="0"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="7dp"
+            android:background="@drawable/border_bottom_right">
             <LinearLayout
-                app:layout_columnWeight="1"
-                app:layout_columnSpan="1"
-                app:layout_rowSpan="1"
-                app:layout_row="0"
-                app:layout_column="0"
-                android:orientation="vertical"
-                android:paddingLeft="15dp"
-                android:paddingRight="5dp"
-                android:paddingBottom="2dp"
-                android:paddingTop="5dp"
-                android:background="@drawable/border_bottom_right">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/car_side_text_padding"
-                        android:background="@drawable/rounded_rect"
-                        android:text="@string/front_left"
-                        android:textAllCaps="true"
-                        android:textSize="@dimen/car_side_text_size"
-                        android:textStyle="bold"
-                        android:textColor="@color/LightGray"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="left">
+                    android:padding="3dp"
+                    android:background="@drawable/rounded_rect"
+                    android:text="@string/front_left"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/LightGray"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="left">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
                     <TextView
                         android:id="@+id/pressure_value_fl"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:paddingLeft="7dp"
-                        android:text="@string/triple_dash"
-                        android:textSize="@dimen/pressure_text_size"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:text="345"
+                        android:textSize="@dimen/_30sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                     <TextView
@@ -68,16 +69,16 @@
                         android:gravity="top"
                         android:paddingLeft="5dp"
                         android:text="@string/unit_psi"
-                        android:textSize="@dimen/pressure_unit_text_size"
+                        android:textSize="@dimen/_16sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Gray_Unit"/>
                     <TextView
                         android:id="@+id/temp_value_fl"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:paddingLeft="15dp"
-                        android:text="@string/double_dash"
-                        android:textSize="@dimen/temp_text_size"
+                        android:text="45"
+                        android:textSize="@dimen/_20sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                     <TextView
@@ -87,64 +88,73 @@
                         android:gravity="top"
                         android:paddingLeft="5dp"
                         android:text="@string/deg_celsius"
-                        android:textSize="@dimen/temp_unit_text_size"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Gray_Unit"/>
                 </LinearLayout>
-                <include layout="@layout/indicators_fl"/>
+            </RelativeLayout>
+
+            <include layout="@layout/indicators_fl"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/fr_box"
+            app:layout_columnWeight="2"
+            app:layout_rowWeight="1"
+            app:layout_row="0"
+            app:layout_column="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="15dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="2dp"
+            android:orientation="vertical"
+            android:gravity="end"
+            android:background="@drawable/border_bottom">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:background="@drawable/rounded_rect"
+                    android:text="@string/front_right"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/LightGray"/>
             </LinearLayout>
 
-            <LinearLayout
-                app:layout_columnWeight="1"
-                app:layout_columnSpan="1"
-                app:layout_rowSpan="1"
-                app:layout_row="0"
-                app:layout_column="1"
-                android:paddingLeft="5dp"
-                android:paddingRight="15dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="2dp"
-                android:orientation="vertical"
-                android:gravity="end"
-                android:background="@drawable/border_bottom">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="right">
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/car_side_text_padding"
-                        android:background="@drawable/rounded_rect"
-                        android:text="@string/front_right"
-                        android:textAllCaps="true"
-                        android:textSize="@dimen/car_side_text_size"
-                        android:textStyle="bold"
-                        android:textColor="@color/LightGray"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="end">
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
                     <TextView
                         android:id="@+id/temp_unit_fr"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="top"
-                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
                         android:text="@string/deg_celsius"
-                        android:textSize="@dimen/temp_unit_text_size"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Gray_Unit"/>
                     <TextView
                         android:id="@+id/temp_value_fr"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:paddingRight="15dp"
-                        android:text="@string/double_dash"
-                        android:textSize="@dimen/temp_text_size"
+                        android:text="45"
+                        android:textSize="@dimen/_20sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                     <TextView
@@ -152,269 +162,314 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="top"
-                        android:paddingRight="5dp"
                         android:text="@string/unit_psi"
-                        android:textSize="@dimen/pressure_unit_text_size"
+                        android:textSize="@dimen/_16sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Gray_Unit"/>
                     <TextView
                         android:id="@+id/pressure_value_fr"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:paddingRight="7dp"
-                        android:text="@string/triple_dash"
-                        android:textSize="@dimen/pressure_text_size"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="345"
+                        android:textSize="@dimen/_30sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                 </LinearLayout>
-                <include layout="@layout/indicators_fr"/>
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
-                app:layout_columnWeight="1"
-                app:layout_columnSpan="1"
-                app:layout_rowSpan="1"
-                app:layout_row="1"
-                app:layout_column="0"
-                android:paddingLeft="15dp"
-                android:paddingRight="5dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="5dp"
-                android:orientation="vertical"
-                android:gravity="bottom"
-                android:background="@drawable/border_bottom_right">
+            <include layout="@layout/indicators_fr"/>
+        </LinearLayout>
 
-                <include layout="@layout/indicators_rl"/>
+
+        <LinearLayout
+            android:id="@+id/rl_box"
+            app:layout_columnWeight="2"
+            app:layout_rowWeight="1"
+            app:layout_row="1"
+            app:layout_column="0"
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="7dp"
+            android:orientation="vertical"
+            android:background="@drawable/border_right">
+
+            <include layout="@layout/indicators_rl"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="left">
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="left">
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
                     <TextView
                         android:id="@+id/pressure_value_rl"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:paddingLeft="7dp"
-                        android:text="@string/triple_dash"
-                        android:textSize="@dimen/pressure_text_size"
+                        android:text="345"
+                        android:textSize="@dimen/_30sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                     <TextView
                         android:id="@+id/pressure_unit_rl"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:gravity="top"
                         android:paddingLeft="5dp"
                         android:text="@string/unit_psi"
-                        android:textSize="@dimen/pressure_unit_text_size"
+                        android:textSize="@dimen/_16sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Gray_Unit"/>
                     <TextView
                         android:id="@+id/temp_value_rl"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:paddingLeft="15dp"
-                        android:text="@string/double_dash"
-                        android:textSize="@dimen/temp_text_size"
+                        android:text="45"
+                        android:textSize="@dimen/_20sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                     <TextView
                         android:id="@+id/temp_unit_rl"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:gravity="top"
                         android:paddingLeft="5dp"
                         android:text="@string/deg_celsius"
-                        android:textSize="@dimen/temp_unit_text_size"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Gray_Unit"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/car_side_text_padding"
-                        android:background="@drawable/rounded_rect"
-                        android:text="@string/rear_left"
-                        android:textAllCaps="true"
-                        android:textSize="@dimen/car_side_text_size"
-                        android:textStyle="bold"
-                        android:textColor="@color/LightGray"/>
-                </LinearLayout>
-            </LinearLayout>
-
-
+            </RelativeLayout>
             <LinearLayout
-                app:layout_columnWeight="1"
-                app:layout_columnSpan="1"
-                app:layout_rowSpan="1"
-                app:layout_row="1"
-                app:layout_column="1"
-                android:paddingRight="15dp"
-                android:paddingLeft="5dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="5dp"
-                android:orientation="vertical"
-                android:gravity="end"
-                android:background="@drawable/border_bottom">
-
-                <include layout="@layout/indicators_rr"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="end">
+                    android:padding="3dp"
+                    android:background="@drawable/rounded_rect"
+                    android:text="@string/rear_left"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/LightGray"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/rr_box"
+            app:layout_columnWeight="2"
+            app:layout_rowWeight="1"
+            app:layout_row="1"
+            app:layout_column="1"
+            android:paddingRight="15dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="7dp"
+            android:orientation="vertical"
+            android:gravity="end">
+
+            <include layout="@layout/indicators_rr"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="right">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
                     <TextView
                         android:id="@+id/temp_unit_rr"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:paddingRight="5dp"
+                        android:gravity="top"
+                        android:paddingLeft="5dp"
                         android:text="@string/deg_celsius"
-                        android:textSize="@dimen/temp_unit_text_size"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Gray_Unit"/>
                     <TextView
                         android:id="@+id/temp_value_rr"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:paddingRight="15dp"
-                        android:text="@string/double_dash"
-                        android:textSize="@dimen/temp_text_size"
+                        android:text="45"
+                        android:textSize="@dimen/_20sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                     <TextView
                         android:id="@+id/pressure_unit_rr"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:paddingRight="5dp"
+                        android:gravity="top"
                         android:text="@string/unit_psi"
-                        android:textSize="@dimen/pressure_unit_text_size"
+                        android:textSize="@dimen/_16sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Gray_Unit"/>
                     <TextView
                         android:id="@+id/pressure_value_rr"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:paddingRight="7dp"
-                        android:text="@string/triple_dash"
-                        android:textSize="@dimen/pressure_text_size"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:text="345"
+                        android:textSize="@dimen/_30sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/car_side_text_padding"
-                        android:background="@drawable/rounded_rect"
-                        android:text="@string/rear_right"
-                        android:textAllCaps="true"
-                        android:textSize="@dimen/car_side_text_size"
-                        android:textStyle="bold"
-                        android:textColor="@color/LightGray"/>
-                </LinearLayout>
-            </LinearLayout>
-        </android.support.v7.widget.GridLayout>
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="170dp"
-            android:src="@drawable/car"
-            android:background="@color/BGColor"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_centerInParent="true"/>
-
-    </RelativeLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@color/Green"/>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
-        <TextView
-            android:id="@+id/spare_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/car_side_text_padding"
-            android:background="@drawable/rounded_rect"
-            android:text="@string/spare"
-            android:textAllCaps="true"
-            android:textSize="@dimen/car_side_text_size"
-            android:textStyle="bold"
-            android:textColor="@color/LightGray"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerInParent="true">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="left">
-                <TextView
-                    android:id="@+id/pressure_value_spare"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:paddingLeft="7dp"
-                    android:text="@string/triple_dash"
-                    android:textSize="@dimen/pressure_text_size"
+                    android:padding="3dp"
+                    android:background="@drawable/rounded_rect"
+                    android:text="@string/rear_right"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
-                    android:textColor="@color/Green"/>
-                <TextView
-                    android:id="@+id/pressure_unit_spare"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="top"
-                    android:paddingLeft="5dp"
-                    android:text="@string/unit_psi"
-                    android:textSize="@dimen/pressure_unit_text_size"
-                    android:textStyle="bold"
-                    android:textColor="@color/Gray_Unit"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="4dp"
-                android:paddingLeft="25dp">
-                <TextView
-                    android:id="@+id/temp_value_spare"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/temp_value_height"
-                    android:text="@string/double_dash"
-                    android:textSize="@dimen/temp_text_size"
-                    android:textStyle="bold"
-                    android:textColor="@color/Green"/>
-                <TextView
-                    android:id="@+id/temp_unit_spare"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="top"
-                    android:paddingLeft="5dp"
-                    android:text="@string/deg_celsius"
-                    android:textSize="@dimen/temp_unit_text_size"
-                    android:textStyle="bold"
-                    android:textColor="@color/Gray_Unit"/>
+                    android:textColor="@color/LightGray"/>
             </LinearLayout>
         </LinearLayout>
 
-        <include layout="@layout/indicators_spare"/>
 
-    </RelativeLayout>
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/spare_box"
+            app:layout_columnWeight="1"
+            app:layout_rowSpan="2"
+            app:layout_row="0"
+            app:layout_column="2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:background="@color/Green"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp">
+                <TextView
+                    android:id="@+id/spare_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:background="@drawable/rounded_rect"
+                    android:text="@string/spare"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/LightGray"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="20dp">
+                        <TextView
+                            android:id="@+id/pressure_value_spare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="200"
+                            android:textSize="@dimen/_24sdp"
+                            android:textStyle="bold"
+                            android:textColor="@color/Green"/>
+                        <TextView
+                            android:id="@+id/pressure_unit_spare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="7dp"
+                            android:gravity="top"
+                            android:text="@string/unit_psi"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            android:textColor="@color/Gray_Unit"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="20dp">
+                        <TextView
+                            android:id="@+id/temp_value_spare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="93"
+                            android:textSize="@dimen/_20sdp"
+                            android:textStyle="bold"
+                            android:textColor="@color/Green"/>
+                        <TextView
+                            android:id="@+id/temp_unit_spare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="top"
+                            android:paddingLeft="7dp"
+                            android:text="@string/deg_celsius"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            android:textColor="@color/Gray_Unit"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <include layout="@layout/indicators_spare"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".81">
+            <ImageView
+                android:id="@+id/car"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_160sdp"
+                android:src="@drawable/car"
+                android:background="@color/BGColor"
+                android:paddingTop="@dimen/_20sdp"
+                android:paddingBottom="@dimen/_20sdp"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".19"/>
+    </LinearLayout>
+
+</RelativeLayout>
