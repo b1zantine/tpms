@@ -9,6 +9,8 @@ public class Preferences {
     public static final String MIN_PRESSURE = "pro2_value";
     public static final String LEAK_PRESSURE = "pro3_value";
     public static final String MAX_TEMPERATURE = "pro4_value";
+    public static final String CONVERTED_MAX_TEMERATURE = "seek4_value";
     public static final String PRESSURE_UNIT = "pos1_value";
     public static final String TEMPERATURE_UNIT = "pos2_value";
+    public static final String MIN_BATTERY = "battery_value";
 }
