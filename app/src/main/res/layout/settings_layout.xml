@@ -44,6 +44,12 @@
         tools:context="com.example.prasa.manatec.MainActivity"
         >
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"/>
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -392,12 +398,6 @@
                     android:layout_below="@+id/seekvalue4"
                     android:textColor="#000000"
                     android:textSize="15sp"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"/>
 
                 <EditText
                     android:layout_width="wrap_content"
