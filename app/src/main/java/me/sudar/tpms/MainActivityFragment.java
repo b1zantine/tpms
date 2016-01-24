@@ -2,6 +2,7 @@ package me.sudar.tpms;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ public class MainActivityFragment extends Fragment {
 
     private SharedPreferences sp;
     private View view;
+    private static Typeface robotoTypeFace;
 
     public MainActivityFragment() {
     }
@@ -27,6 +29,7 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         sp = getContext().getSharedPreferences(Preferences.PREFERENCES_NAME, Context.MODE_PRIVATE);
         view = inflater.inflate(R.layout.fragment_main, container, false);
+        setRobotoFont(getContext(),this.view);
         return view;
     }
 
@@ -34,6 +37,30 @@ public class MainActivityFragment extends Fragment {
     public void onResume() {
         super.onResume();
         setUnits();
+    }
+
+    public static void setRobotoFont (Context context, View view)
+    {
+        if (robotoTypeFace == null)
+        {
+            robotoTypeFace = Typeface.createFromAsset(context.getAssets(), "Roboto-Bold.ttf");
+        }
+        setFont(view, robotoTypeFace);
+    }
+
+    private static void setFont (View view, Typeface robotoTypeFace)
+    {
+        if (view instanceof ViewGroup)
+        {
+            for (int i = 0; i < ((ViewGroup)view).getChildCount(); i++)
+            {
+                setFont(((ViewGroup)view).getChildAt(i), robotoTypeFace);
+            }
+        }
+        else if (view instanceof TextView)
+        {
+            ((TextView) view).setTypeface(robotoTypeFace);
+        }
     }
 
     public void setUnits(){

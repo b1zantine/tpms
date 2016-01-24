@@ -2,12 +2,15 @@ package me.sudar.tpms;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -52,6 +55,7 @@ public class SettingsActivity extends AppCompatActivity{
     public RadioGroup rg2;
 
     SharedPreferences sp;
+    private static Typeface robotoTypeFace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +88,8 @@ public class SettingsActivity extends AppCompatActivity{
         seek8 = (TextView) findViewById(R.id.seek8);
 
         sp = getSharedPreferences(Preferences.PREFERENCES_NAME, Context.MODE_PRIVATE);
+
+        setRobotoFont(SettingsActivity.this, (ViewGroup) findViewById(R.id.focusPuller).getParent());
 
         loadData();
 
@@ -540,6 +546,30 @@ public class SettingsActivity extends AppCompatActivity{
     public void onResume() {
         super.onResume();
         loadData();
+    }
+
+    public static void setRobotoFont (Context context, View view)
+    {
+        if (robotoTypeFace == null)
+        {
+            robotoTypeFace = Typeface.createFromAsset(context.getAssets(), "Roboto-Regular.ttf");
+        }
+        setFont(view, robotoTypeFace);
+    }
+
+    private static void setFont (View view, Typeface robotoTypeFace)
+    {
+        if (view instanceof ViewGroup)
+        {
+            for (int i = 0; i < ((ViewGroup)view).getChildCount(); i++)
+            {
+                setFont(((ViewGroup)view).getChildAt(i), robotoTypeFace);
+            }
+        }
+        else if (view instanceof TextView)
+        {
+            ((TextView) view).setTypeface(robotoTypeFace);
+        }
     }
 }
 
