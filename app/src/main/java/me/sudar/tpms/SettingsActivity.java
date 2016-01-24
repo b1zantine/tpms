@@ -1,6 +1,7 @@
 package me.sudar.tpms;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -548,7 +551,32 @@ public class SettingsActivity extends AppCompatActivity{
         loadData();
     }
 
-    public static void setRobotoFont (Context context, View view)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.revert_settings) {
+            revertSettings();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void revertSettings(){
+        ((RadioButton) rg1.getChildAt(0)).setChecked(true);
+        ((RadioButton) rg2.getChildAt(0)).setChecked(true);
+        
+        seekbar_range_pos1(0);
+        seekbar_range_pos2(0);
+    }
+
+    public void setRobotoFont (Context context, View view)
     {
         if (robotoTypeFace == null)
         {
@@ -557,7 +585,7 @@ public class SettingsActivity extends AppCompatActivity{
         setFont(view, robotoTypeFace);
     }
 
-    private static void setFont (View view, Typeface robotoTypeFace)
+    private void setFont (View view, Typeface robotoTypeFace)
     {
         if (view instanceof ViewGroup)
         {

@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="me.sudar.tpms.MainActivity">
+    <item
+        android:id="@+id/revert_settings"
+        android:title="@string/revert_settings"
+        app:showAsAction="never"/>
+</menu>
