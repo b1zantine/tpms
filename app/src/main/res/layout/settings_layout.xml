@@ -66,15 +66,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id ="@+id/pressure_text"
-                    android:text="UNIT OF PRESSURE"
+                    android:text="PRESSURE"
                     android:padding="12dp"
                     android:textSize="15sp"
                     />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="2dp"
                     android:background="#d3d3d3"
+                    android:layout_below="@+id/pressure_text"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id ="@+id/pressure_adjust"
+                    android:text="Unit of Pressure"
+                    android:textColor="#000000"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:textSize="15sp"
                     android:layout_below="@+id/pressure_text"/>
 
                 <RadioGroup
@@ -82,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_below="@+id/pressure_text"
+                    android:layout_below="@+id/pressure_adjust"
                     android:padding="10dp">
 
                     <RadioButton
@@ -110,41 +123,31 @@
                         />
                 </RadioGroup>
 
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/pressure_adjust_cv"
-            android:layout_below="@+id/pressure_cv"
-            app:cardUseCompatPadding = "true"
-            app:cardCornerRadius = "7dp"
-            >
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id ="@+id/pressure_adjust"
-                    android:text="PRESSURE"
-                    android:padding="12dp"
-                    android:textSize="15sp"/>
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#d3d3d3"
-                    android:layout_below="@+id/pressure_adjust"/>
+                    android:layout_below="@+id/radio_pressure"
+                    android:padding = "10dp"/>
+
+                <ImageView
+                    android:id="@+id/hp_thumbnail"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:layout_below="@+id/radio_pressure"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/hp_red" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/max_pressure"
-                    android:text="Maximum"
-                    android:layout_below="@+id/pressure_adjust"
-                    android:padding = "10dp"
+                    android:text="High Pressure"
+                    android:layout_below="@+id/radio_pressure"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="14dp"
                     android:textColor="#000000"
                     android:textSize="15sp"/>
 
@@ -153,7 +156,6 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/seekBar1"
                     android:layout_below="@+id/max_pressure"
-                    android:max="100"
                     android:layout_centerHorizontal="true"
                     />
 
@@ -181,13 +183,24 @@
                     android:layout_below="@+id/seekBar1"
                     android:layout_centerInParent="true"/>
 
+                <ImageView
+                    android:id="@+id/lp_thumbnail"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:layout_below="@+id/seekvalue1"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/lp_red" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/min_pressure"
-                    android:text="Minimum"
+                    android:text="Low Pressure"
                     android:layout_below="@+id/seekvalue1"
-                    android:padding="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="14dp"
                     android:textColor="#000000"
                     android:textSize="15sp"/>
 
@@ -196,7 +209,6 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/seekBar2"
                     android:layout_below="@+id/min_pressure"
-                    android:max="100"
                     android:layout_centerHorizontal="true" />
 
                 <TextView
@@ -223,13 +235,24 @@
                     android:layout_below="@+id/seekBar2"
                     android:layout_centerInParent="true"/>
 
+                <ImageView
+                    android:id="@+id/fleak_thumbnail"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:layout_below="@+id/seekvalue2"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/fleak_red" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/leak_pressure"
-                    android:text="Leak Pressure"
+                    android:text="Fast Leakage"
                     android:layout_below="@+id/seekvalue2"
-                    android:padding = "10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="14dp"
                     android:textColor="#000000"
                     android:textSize="15sp"/>
 
@@ -238,7 +261,6 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/seekBar3"
                     android:layout_below="@+id/leak_pressure"
-                    android:max="100"
                     android:layout_centerHorizontal="true" />
 
                 <TextView
@@ -269,11 +291,12 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/temperature_cv"
-            android:layout_below="@+id/pressure_adjust_cv"
+            android:layout_below="@+id/pressure_cv"
             app:cardUseCompatPadding = "true"
             app:cardCornerRadius = "7dp"
             >
@@ -284,23 +307,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id ="@+id/temperature_text"
-                    android:text="UNIT OF TEMPERATURE"
+                    android:text="TEMPERATURE"
                     android:padding="12dp"
                     android:textSize="15sp"/>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="2dp"
                     android:background="#d3d3d3"
                     android:layout_below="@+id/temperature_text"
                     android:padding = "10dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id ="@+id/temp_battery_adjust"
+                    android:text="Unit of Temperature"
+                    android:textColor="#000000"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:textSize="15sp"
+                    android:layout_below="@+id/temperature_text"/>
 
                 <RadioGroup
                     android:id="@+id/radio_temperature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_below="@+id/temperature_text"
+                    android:layout_below="@+id/temp_battery_adjust"
                     android:padding="10dp">
 
                     <RadioButton
@@ -320,41 +355,31 @@
                         />
                 </RadioGroup>
 
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/temp_battery_cv"
-            android:layout_below="@+id/temperature_cv"
-            app:cardUseCompatPadding = "true"
-            app:cardCornerRadius = "7dp"
-            >
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id ="@+id/temp_battery_adjust"
-                    android:text="TEMPERATURE AND BATTERY"
-                    android:padding="12dp"
-                    android:textSize="15sp"/>
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#d3d3d3"
-                    android:layout_below="@+id/temp_battery_adjust"/>
+                    android:layout_below="@+id/radio_temperature"
+                    android:padding = "10dp"/>
+
+                <ImageView
+                    android:id="@+id/temp_thumbnail"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:layout_below="@+id/radio_temperature"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/temp_red" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/max_temperature"
                     android:text="Maximum"
-                    android:layout_below="@+id/temp_battery_adjust"
-                    android:padding="10dp"
+                    android:layout_below="@+id/radio_temperature"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="14dp"
                     android:textColor="#000000"
                     android:textSize="15sp"/>
 
@@ -363,7 +388,6 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/seekBar4"
                     android:layout_below="@+id/max_temperature"
-                    android:max="100"
                     android:layout_centerHorizontal="true"/>
 
                 <TextView
@@ -391,40 +415,92 @@
                     android:layout_centerInParent="true"
                     android:paddingBottom="10dp"/>
 
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/temp_battery_cv"
+            android:layout_below="@+id/temperature_cv"
+            app:cardUseCompatPadding = "true"
+            app:cardCornerRadius = "7dp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id ="@+id/battery_text"
+                    android:text="BATTERY"
+                    android:padding="12dp"
+                    android:textSize="15sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#d3d3d3"
+                    android:layout_below="@+id/battery_text"
+                    android:padding = "10dp"/>
+
+                <ImageView
+                    android:id="@+id/battery_thumbnail"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:layout_below="@+id/battery_text"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/battery_red" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/min_battery"
-                    android:padding="10dp"
-                    android:text="Battery Threshold : "
-                    android:layout_below="@+id/seekvalue4"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="14dp"
+                    android:text="Low Battery"
+                    android:layout_below="@+id/battery_text"
                     android:textColor="#000000"
                     android:textSize="15sp"/>
 
-                <EditText
-                    android:layout_width="wrap_content"
+                <SeekBar
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/battery_threshold"
-                    android:inputType="number"
-                    android:singleLine="true"
-                    android:maxLength="1"
-                    android:layout_below="@+id/seekvalue4"
-                    android:layout_toRightOf="@+id/min_battery"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="20sp"
-                    android:textColor="@color/Green"/>
+                    android:id="@+id/seekBar5"
+                    android:max="4000"
+                    android:layout_below="@+id/min_battery"
+                    android:layout_centerHorizontal="true"
+                    />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/battery_unit"
-                    android:text="V"
-                    android:layout_below = "@+id/seekvalue4"
-                    android:layout_toRightOf="@+id/battery_threshold"
-                    android:paddingTop="10dp"
-                    android:textColor="#000000"
-                    android:textSize="15sp"/>
+                    android:id="@+id/seek9"
+                    android:text="0"
+                    android:layout_below="@+id/seekBar5"
+                    android:paddingLeft="10dp"
+                    android:layout_alignLeft="@+id/seekBar5"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/seek10"
+                    android:text="4"
+                    android:layout_below="@+id/seekBar5"
+                    android:paddingRight="10dp"
+                    android:layout_alignRight="@+id/seekBar5"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/seekvalue5"
+                    android:textSize="20dp"
+                    android:layout_below="@+id/seekBar5"
+                    android:layout_centerInParent="true"/>
+
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>

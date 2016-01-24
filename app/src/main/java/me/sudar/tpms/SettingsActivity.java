@@ -8,17 +8,16 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.text.NumberFormat;
 
@@ -29,12 +28,12 @@ public class SettingsActivity extends AppCompatActivity{
     int pro2;
     int pro3;
     int pro4;
+    int pro5;
     int old_position1;
     int old_position2;
     int pos1;
     int pos2;
     int converted_seekvalue4;
-    String battery_value;
     SeekBar sk1;
     TextView seekvalue1;
     SeekBar sk2;
@@ -43,7 +42,8 @@ public class SettingsActivity extends AppCompatActivity{
     TextView seekvalue3;
     SeekBar sk4;
     TextView seekvalue4;
-    EditText battery_threshold;
+    SeekBar sk5;
+    TextView seekvalue5;
 
     TextView seek1;
     TextView seek2;
@@ -53,6 +53,8 @@ public class SettingsActivity extends AppCompatActivity{
     TextView seek6;
     TextView seek7;
     TextView seek8;
+
+    String text;
 
     public RadioGroup rg1;
     public RadioGroup rg2;
@@ -77,9 +79,10 @@ public class SettingsActivity extends AppCompatActivity{
         seekvalue3 = (TextView) findViewById(R.id.seekvalue3);
         sk4 = (SeekBar) findViewById(R.id.seekBar4);
         seekvalue4 = (TextView) findViewById(R.id.seekvalue4);
+        sk5 = (SeekBar) findViewById(R.id.seekBar5);
+        seekvalue5 = (TextView) findViewById(R.id.seekvalue5);
         rg1 = (RadioGroup) findViewById(R.id.radio_pressure);
         rg2 = (RadioGroup) findViewById(R.id.radio_temperature);
-        battery_threshold = (EditText) findViewById(R.id.battery_threshold);
 
         seek1 = (TextView) findViewById(R.id.seek1);
         seek2 = (TextView) findViewById(R.id.seek2);
@@ -96,17 +99,12 @@ public class SettingsActivity extends AppCompatActivity{
 
         loadData();
 
-        NumberFormat formatter = NumberFormat.getNumberInstance();
-        formatter.setMinimumFractionDigits(2);
-        formatter.setMaximumFractionDigits(2);
-
         seekbar_range_pos1(pos1);
         seekbar_range_pos2(pos2);
 
         old_position1=pos1;
         old_position2=pos2;
 
-        battery_threshold.setText(battery_value);
         RadioButton r1 = (RadioButton) rg1.getChildAt(pos1);
         r1.setChecked(true);
 
@@ -168,6 +166,9 @@ public class SettingsActivity extends AppCompatActivity{
                 sk4.setProgress(pro4);
                 break;
         }
+
+        sk5.setProgress(pro5);
+        seekvalue5.setText(String.format("%.2f",(float)pro5 / 1000) + " V");
 
         sk1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -308,6 +309,31 @@ public class SettingsActivity extends AppCompatActivity{
             }
         });
 
+        sk5.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                // TODO Auto-generated method stub
+
+                pro5 = progress;    //we can use the progress value of pro as anywhere
+                seekvalue5.setText(String.format("%.2f",(float)pro5 / 1000) + " V");
+                sk5.setProgress(pro5);
+                }
+        });
+
 
         rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -332,23 +358,6 @@ public class SettingsActivity extends AppCompatActivity{
                 pos2 = rg2.indexOfChild(findViewById(checkedId));
                 seekbar_range_pos2(pos2);
                 conversion_temperature(pos2);
-            }
-        });
-
-
-        battery_threshold.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                battery_value = s.toString();
             }
         });
     }
@@ -495,7 +504,8 @@ public class SettingsActivity extends AppCompatActivity{
                 pro4 = (int)(pro4 * 1.8) + 32;
                 pro4-=32;
                 sk4.setProgress(pro4);
-                seekvalue4.setText(String.valueOf(pro4+32) + "" + "°F");
+                //seekvalue4.setText(pro4 + 32 + "" + "°F");
+                seekvalue4.setText(pro4 + 32 + "" + "°F");
                 old_position2 = pos;
             }
                 break;
@@ -503,8 +513,8 @@ public class SettingsActivity extends AppCompatActivity{
             case 1:if(pos==0){
                 pro4+=32;
                 pro4 = (int) ((pro4 - 32)/1.8);
-                sk4.setProgress(pro4);
-                seekvalue4.setText(String.valueOf(pro4) + "" + "°C");
+                sk4.setProgress(pro4 + 32);
+                seekvalue4.setText(pro4 + 32 + "" + "°C");
                 old_position2 = pos;
             }
                 break;
@@ -512,18 +522,17 @@ public class SettingsActivity extends AppCompatActivity{
     }
 
     public void saveData() {
-        String text = seekvalue4.getText().toString();
-      //  converted_seekvalue4 = Integer.parseInt(text.substring(0, text.indexOf('°')));
         SharedPreferences.Editor editor = sp.edit();
+        text = seekvalue4.getText().toString();
+        //converted_seekvalue4 = Integer.parseInt(text.substring(0, text.indexOf('°')));
         editor.putInt(Preferences.MAX_PRESSURE, pro1);
         editor.putInt(Preferences.MIN_PRESSURE, pro2);
         editor.putInt(Preferences.LEAK_PRESSURE, pro3);
         editor.putInt(Preferences.MAX_TEMPERATURE, pro4);
-        editor.putInt(Preferences.MAX_TEMPERATURE, pro4);
+        editor.putInt(Preferences.MIN_BATTERY, pro5);
         editor.putInt(Preferences.CONVERTED_MAX_TEMERATURE,converted_seekvalue4);
         editor.putInt(Preferences.PRESSURE_UNIT, pos1);
         editor.putInt(Preferences.TEMPERATURE_UNIT, pos2);
-        editor.putString(Preferences.MIN_BATTERY, battery_value);
         editor.commit();
     }
 
@@ -532,11 +541,10 @@ public class SettingsActivity extends AppCompatActivity{
         pro2 = sp.getInt(Preferences.MIN_PRESSURE, 22);
         pro3 = sp.getInt(Preferences.LEAK_PRESSURE, 10);
         pro4 = sp.getInt(Preferences.MAX_TEMPERATURE, 55);
+        pro5 = sp.getInt(Preferences.MIN_BATTERY, 22);
         converted_seekvalue4 = sp.getInt(Preferences.CONVERTED_MAX_TEMERATURE,55);
         pos1 = sp.getInt(Preferences.PRESSURE_UNIT, 0);
         pos2 = sp.getInt(Preferences.TEMPERATURE_UNIT, 0);
-        battery_value = sp.getString(Preferences.MIN_BATTERY,"22");
-
     }
 
     @Override
@@ -571,9 +579,20 @@ public class SettingsActivity extends AppCompatActivity{
     public void revertSettings(){
         ((RadioButton) rg1.getChildAt(0)).setChecked(true);
         ((RadioButton) rg2.getChildAt(0)).setChecked(true);
-        
+        pro1 = 40;
+        pro2 = 22;
+        pro3 = 10;
+        pro4 = 55;
+        pro5 = 22;
+
         seekbar_range_pos1(0);
         seekbar_range_pos2(0);
+
+        sk1.setProgress(pro1);
+        sk2.setProgress(pro2);
+        sk3.setProgress(pro3);
+        sk4.setProgress(pro4);
+        sk5.setProgress(pro5);
     }
 
     public void setRobotoFont (Context context, View view)
