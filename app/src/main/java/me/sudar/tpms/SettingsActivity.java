@@ -36,7 +36,6 @@ public class SettingsActivity extends AppCompatActivity{
     int old_position2;
     int pos1;
     int pos2;
-    int converted_seekvalue4;
     SeekBar sk1;
     TextView seekvalue1;
     SeekBar sk2;
@@ -162,14 +161,15 @@ public class SettingsActivity extends AppCompatActivity{
 
         switch (pos2) {
             case 0:
-                seekvalue4.setText(String.valueOf(converted_seekvalue4) + " " + "°C");
+                seekvalue4.setText(String.valueOf(pro4) + "" + "°C");
                 sk4.setProgress(pro4);
                 break;
             case 1:
-                seekvalue4.setText(String.valueOf(converted_seekvalue4) + " " + "°F");
+                seekvalue4.setText(String.valueOf(pro4 + 32) + "" + "°F");
                 sk4.setProgress(pro4);
                 break;
         }
+
 
         sk5.setProgress(pro5);
         seekvalue5.setText(String.format("%.2f",(float)pro5 / 1000) + " V");
@@ -459,14 +459,11 @@ public class SettingsActivity extends AppCompatActivity{
 
     public void saveData() {
         SharedPreferences.Editor editor = sp.edit();
-        text = seekvalue4.getText().toString();
-        //converted_seekvalue4 = Integer.parseInt(text.substring(0, text.indexOf('°')));
         editor.putInt(Preferences.MAX_PRESSURE, pro1);
         editor.putInt(Preferences.MIN_PRESSURE, pro2);
         editor.putInt(Preferences.LEAK_PRESSURE, pro3);
         editor.putInt(Preferences.MAX_TEMPERATURE, pro4);
         editor.putInt(Preferences.MIN_BATTERY, pro5);
-        editor.putInt(Preferences.CONVERTED_MAX_TEMERATURE,converted_seekvalue4);
         editor.putInt(Preferences.PRESSURE_UNIT, pos1);
         editor.putInt(Preferences.TEMPERATURE_UNIT, pos2);
         editor.apply();
@@ -478,7 +475,6 @@ public class SettingsActivity extends AppCompatActivity{
         pro3 = sp.getInt(Preferences.LEAK_PRESSURE, 10);
         pro4 = sp.getInt(Preferences.MAX_TEMPERATURE, 55);
         pro5 = sp.getInt(Preferences.MIN_BATTERY, 22);
-        converted_seekvalue4 = sp.getInt(Preferences.CONVERTED_MAX_TEMERATURE,55);
         pos1 = sp.getInt(Preferences.PRESSURE_UNIT, 0);
         pos2 = sp.getInt(Preferences.TEMPERATURE_UNIT, 0);
     }
