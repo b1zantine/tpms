@@ -8,14 +8,17 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -61,6 +64,7 @@ public class SettingsActivity extends AppCompatActivity{
 
     SharedPreferences sp;
     private static Typeface robotoTypeFace;
+    private int temp1,temp2,temp3,temp4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,22 +178,18 @@ public class SettingsActivity extends AppCompatActivity{
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-                if(pro1 < pro2)
+                if(pro1 < pro2) {
                     sk1.setProgress(pro2);
+                    Toast.makeText(SettingsActivity.this,"HP can't be lower than LP", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
-                // TODO Auto-generated method stub
-
                 pro1 = progress;    //we can use the progress value of pro as anywhere
                 switch (pos1) {
                     case 0:
@@ -209,23 +209,18 @@ public class SettingsActivity extends AppCompatActivity{
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-                if (pro2 > pro1)
+                if (pro2 > pro1) {
                     sk2.setProgress(pro1);
-
+                    Toast.makeText(SettingsActivity.this, "LP can't be higher than HP", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
-                // TODO Auto-generated method stub
-
                 pro2 = progress;    //we can use the progress value of pro as anywhere
                 switch (pos1) {
                     case 0:
@@ -244,22 +239,14 @@ public class SettingsActivity extends AppCompatActivity{
         sk3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
-                // TODO Auto-generated method stub
-
                 pro3 = progress;    //we can use the progress value of pro as anywhere
                 switch (pos1) {
                     case 0:
@@ -278,22 +265,14 @@ public class SettingsActivity extends AppCompatActivity{
         sk4.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
-                // TODO Auto-generated method stub
-
                 pro4 = progress;    //we can use the progress value of pro as anywhere
                 switch (pos2) {
                     case 0:
@@ -312,26 +291,18 @@ public class SettingsActivity extends AppCompatActivity{
         sk5.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
-                // TODO Auto-generated method stub
-
                 pro5 = progress;    //we can use the progress value of pro as anywhere
-                seekvalue5.setText(String.format("%.2f",(float)pro5 / 1000) + " V");
+                seekvalue5.setText(String.format("%.2f", (float) pro5 / 1000) + " V");
                 sk5.setProgress(pro5);
-                }
+            }
         });
 
 
@@ -339,12 +310,11 @@ public class SettingsActivity extends AppCompatActivity{
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // TODO Auto-generated method stub
-                int prog1;
                 // Method 1 For Getting Index of RadioButton
                 pos1 = rg1.indexOfChild(findViewById(checkedId));
-                seekbar_range_pos1(pos1);
                 conversion_pressure(pos1);
+                seekbar_range_pos1(pos1);
+                setPressureProgress();
             }
         });
 
@@ -352,12 +322,11 @@ public class SettingsActivity extends AppCompatActivity{
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // TODO Auto-generated method stub
-                int prog1;
                 // Method 1 For Getting Index of RadioButton
                 pos2 = rg2.indexOfChild(findViewById(checkedId));
-                seekbar_range_pos2(pos2);
                 conversion_temperature(pos2);
+                seekbar_range_pos2(pos2);
+                setTempProgress();
             }
         });
     }
@@ -376,9 +345,9 @@ public class SettingsActivity extends AppCompatActivity{
                 seek6.setText("99");
                 break;
             case 1:
-                sk1.setMax(70);
-                sk2.setMax(70);
-                sk3.setMax(70);
+                sk1.setMax(7);
+                sk2.setMax(7);
+                sk3.setMax(7);
                 seek1.setText("0");
                 seek2.setText("7");
                 seek3.setText("0");
@@ -417,109 +386,76 @@ public class SettingsActivity extends AppCompatActivity{
 
     public void conversion_pressure(int pos){
         switch(old_position1){
-            case 0:if(pos==1){
-                pro1 =(int)(pro1/14.513);
-                pro2 =(int)(pro1/14.513);
-                pro3 =(int)(pro1/14.513);
-                sk1.setProgress(pro1);
-                sk2.setProgress(pro2);
-                sk3.setProgress(pro3);
-                seekvalue1.setText(String.valueOf(pro1) + " " + "Bar");
-                seekvalue2.setText(String.valueOf(pro2) + " " + "Bar");
-                seekvalue3.setText(String.valueOf(pro3) + " " + "Bar/min");
-                old_position1=1;
-            }
-            else if(pos==2){
-                pro1 *= 6.89;
-                pro2 *= 6.89;
-                pro3 *= 6.89;
-                sk1.setProgress(pro1);
-                sk2.setProgress(pro2);
-                sk3.setProgress(pro3);
-                seekvalue1.setText(String.valueOf(pro1) + " " + "KPa");
-                seekvalue2.setText(String.valueOf(pro2) + " " + "KPa");
-                seekvalue3.setText(String.valueOf(pro3) + " " + "KPa/min");
-                old_position1=2;
-            }
+            case 0:
+                if(pos==1){
+                    temp1 =(int) Math.ceil(pro1 * 0.0689);
+                    temp2 =(int) Math.ceil(pro2 * 0.0689);
+                    temp3 =(int) Math.ceil(pro3 * 0.0689);
+                    old_position1=1;
+                }
+                else if(pos==2){
+                    temp1 = (int) (pro1 * 6.89);
+                    temp2 = (int) (pro2 * 6.89);
+                    temp3 = (int) (pro3 * 6.89);
+                    old_position1=2;
+                }
                 break;
 
-            case 1:if(pos==0){
-                pro1 /= 0.0689;
-                pro2 /= 0.0689;
-                pro3 /= 0.0689;
-                sk1.setProgress(pro1);
-                sk2.setProgress(pro2);
-                sk3.setProgress(pro3);
-                seekvalue1.setText(String.valueOf(pro1) + " " + "PSI");
-                seekvalue2.setText(String.valueOf(pro2) + " " + "PSI");
-                seekvalue3.setText(String.valueOf(pro3) + " " + "PSI/min");
-                old_position1=0;
-            }
-            else if(pos==2){
-                pro1 *= 100;
-                pro2 *= 100;
-                pro3 *= 100;
-                sk1.setProgress(pro1);
-                sk2.setProgress(pro2);
-                sk3.setProgress(pro3);
-                seekvalue1.setText(String.valueOf(pro1) + " " + "KPa");
-                seekvalue2.setText(String.valueOf(pro2) + " " + "KPa");
-                seekvalue3.setText(String.valueOf(pro3) + " " + "KPa/min");
-                old_position1=2;
-            }
+            case 1:
+                if(pos==0){
+                    temp1 = (int) (pro1 / 0.0689);
+                    temp2 = (int) (pro2 / 0.0689);
+                    temp3 = (int) (pro3 / 0.0689);
+                    old_position1=0;
+                }
+                else if(pos==2){
+                    temp1 = pro1 * 100;
+                    temp2 = pro2 * 100;
+                    temp3 = pro3 * 100;
+                    old_position1=2;
+                }
                 break;
 
-            case 2:if(pos==0){
-               // pro1 *= Math.round(pro1 * 0.145);
-                pro2 *= Math.ceil(pro2 * 0.145);
-                pro3 *= Math.ceil(pro3 * 0.145);
-                sk1.setProgress((int)(pro1*0.145));
-                sk2.setProgress(pro2);
-                sk3.setProgress(pro3);
-                seekvalue1.setText(String.valueOf(pro1) + " " + "PSI");
-                seekvalue2.setText(String.valueOf(pro2) + " " + "PSI");
-                seekvalue3.setText(String.valueOf(pro3) + " " + "PSI/min");
-                old_position1=0;
-            }
-            else if(pos==1){
-                pro1 *= Math.ceil(pro1 * 0.01);
-                pro2 *= Math.ceil(pro2 * 0.01);
-                pro3 *= Math.ceil(pro3 * 0.01);
-                sk1.setProgress(pro1);
-                sk2.setProgress(pro2);
-                sk3.setProgress(pro3);
-                seekvalue1.setText(String.valueOf(pro1) + " " + "Bar");
-                seekvalue2.setText(String.valueOf(pro2) + " " + "Bar");
-                seekvalue3.setText(String.valueOf(pro3) + " " + "Bar/min");
-                old_position1=1;
-            }
+            case 2:
+                if(pos==0){
+                    temp1 = (int) Math.ceil(pro1 * 0.145);
+                    temp2 = (int) Math.ceil(pro2 * 0.145);
+                    temp3 = (int) Math.ceil(pro3 * 0.145);
+                    old_position1=0;
+                }
+                else if(pos==1){
+                    temp1 = (int) Math.ceil(pro1 * 0.01);
+                    temp2 = (int) Math.ceil(pro2 * 0.01);
+                    temp3 = (int) Math.ceil(pro3 * 0.01);
+                    old_position1=1;
+                }
                 break;
-
         }
+    }
+
+    public void setPressureProgress(){
+        sk1.setProgress(temp1);
+        sk2.setProgress(temp2);
+        sk3.setProgress(temp3);
     }
 
     public void conversion_temperature(int pos){
         switch (old_position2){
             case 0:if(pos==1){
-                pro4 = (int)(pro4 * 1.8) + 32;
-                pro4-=32;
-                sk4.setProgress(pro4);
-                //seekvalue4.setText(pro4 + 32 + "" + "°F");
-                seekvalue4.setText(pro4 + 32 + "" + "°F");
+                temp4 = (int)(pro4 * 1.8);
                 old_position2 = pos;
             }
                 break;
 
             case 1:if(pos==0){
-                pro4+=32;
-                pro4 = (int) ((pro4 - 32)/1.8);
-                sk4.setProgress(pro4 + 32);
-                seekvalue4.setText(pro4 + 32 + "" + "°C");
+                temp4 = (int) (pro4 / 1.8);
                 old_position2 = pos;
             }
                 break;
         }
     }
+
+    public void setTempProgress(){sk4.setProgress(temp4);}
 
     public void saveData() {
         SharedPreferences.Editor editor = sp.edit();
@@ -533,7 +469,7 @@ public class SettingsActivity extends AppCompatActivity{
         editor.putInt(Preferences.CONVERTED_MAX_TEMERATURE,converted_seekvalue4);
         editor.putInt(Preferences.PRESSURE_UNIT, pos1);
         editor.putInt(Preferences.TEMPERATURE_UNIT, pos2);
-        editor.commit();
+        editor.apply();
     }
 
     public void loadData() {
