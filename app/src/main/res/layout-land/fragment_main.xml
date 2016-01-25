@@ -58,7 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
-                        android:text="345"
+                        android:text="@string/triple_dash"
                         android:textSize="@dimen/_30sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
@@ -77,7 +77,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="15dp"
-                        android:text="45"
+                        android:text="@string/double_dash"
                         android:textSize="@dimen/_20sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
@@ -153,7 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingRight="15dp"
-                        android:text="45"
+                        android:text="@string/double_dash"
                         android:textSize="@dimen/_20sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
@@ -172,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text="345"
+                        android:text="@string/triple_dash"
                         android:textSize="@dimen/_30sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
@@ -214,7 +214,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="7dp"
-                        android:text="345"
+                        android:text="@string/triple_dash"
                         android:textSize="@dimen/_30sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
@@ -233,7 +233,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="15dp"
-                        android:text="45"
+                        android:text="@string/double_dash"
                         android:textSize="@dimen/_20sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
@@ -306,7 +306,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingRight="15dp"
-                        android:text="45"
+                        android:text="@string/double_dash"
                         android:textSize="@dimen/_20sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
@@ -325,7 +325,7 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text="345"
+                        android:text="@string/triple_dash"
                         android:textSize="@dimen/_30sdp"
                         android:textStyle="bold"
                         android:textColor="@color/Green"/>
@@ -399,7 +399,7 @@
                             android:id="@+id/pressure_value_spare"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="200"
+                            android:text="@string/triple_dash"
                             android:textSize="@dimen/_24sdp"
                             android:textStyle="bold"
                             android:textColor="@color/Green"/>
@@ -424,7 +424,7 @@
                             android:id="@+id/temp_value_spare"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="93"
+                            android:text="@string/double_dash"
                             android:textSize="@dimen/_20sdp"
                             android:textStyle="bold"
                             android:textColor="@color/Green"/>
@@ -471,5 +471,10 @@
             android:layout_height="match_parent"
             android:layout_weight=".19"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/data_textview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

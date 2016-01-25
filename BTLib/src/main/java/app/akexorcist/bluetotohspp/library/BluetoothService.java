@@ -349,6 +349,7 @@ public class BluetoothService {
         }
 
         public void run() {
+            int counter = 0;
             byte[] buffer;
             ArrayList<Integer> arr_byte = new ArrayList<Integer>();
 
@@ -356,8 +357,11 @@ public class BluetoothService {
             while (true) {
                 try {
                     int data = mmInStream.read();
-                    if(data == 0x0A) { 
-                    } else if(data == 0x0D) {
+//                    if(data == 0x0A) {
+//                    } else
+//                    if(data == 0x0D) {
+                    arr_byte.add(data);
+                    if((counter + 1) % 15 == 0) {
                         buffer = new byte[arr_byte.size()];
                         for(int i = 0 ; i < arr_byte.size() ; i++) {
                             buffer[i] = arr_byte.get(i).byteValue();
@@ -366,14 +370,19 @@ public class BluetoothService {
                         mHandler.obtainMessage(BluetoothState.MESSAGE_READ
                                 , buffer.length, -1, buffer).sendToTarget();
                         arr_byte = new ArrayList<Integer>();
-                    } else {
-                        arr_byte.add(data);
                     }
+//                    else {
+//                        arr_byte.add(data);
+//                    }
+                    counter = (counter + 1) % 15;
+                    Thread.sleep(200);
                 } catch (IOException e) {
                     connectionLost();
                     // Start the service over to restart listening mode
                     BluetoothService.this.start(BluetoothService.this.isAndroid);
                     break;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }

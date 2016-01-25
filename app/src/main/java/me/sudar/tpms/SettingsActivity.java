@@ -24,6 +24,7 @@ import org.w3c.dom.Text;
 
 import java.text.NumberFormat;
 
+import me.sudar.tpms.preferences.Defaults;
 import me.sudar.tpms.preferences.Preferences;
 
 public class SettingsActivity extends AppCompatActivity{
@@ -470,13 +471,13 @@ public class SettingsActivity extends AppCompatActivity{
     }
 
     public void loadData() {
-        pro1 = sp.getInt(Preferences.MAX_PRESSURE, 40);
-        pro2 = sp.getInt(Preferences.MIN_PRESSURE, 22);
-        pro3 = sp.getInt(Preferences.LEAK_PRESSURE, 10);
-        pro4 = sp.getInt(Preferences.MAX_TEMPERATURE, 55);
-        pro5 = sp.getInt(Preferences.MIN_BATTERY, 22);
-        pos1 = sp.getInt(Preferences.PRESSURE_UNIT, 0);
-        pos2 = sp.getInt(Preferences.TEMPERATURE_UNIT, 0);
+        pro1 = sp.getInt(Preferences.MAX_PRESSURE, Defaults.maxPressure);
+        pro2 = sp.getInt(Preferences.MIN_PRESSURE, Defaults.minPressure);
+        pro3 = sp.getInt(Preferences.LEAK_PRESSURE, Defaults.maxPressureLeak);
+        pro4 = sp.getInt(Preferences.MAX_TEMPERATURE, Defaults.maxTemperature);
+        pro5 = sp.getInt(Preferences.MIN_BATTERY, Defaults.minVoltage);
+        pos1 = sp.getInt(Preferences.PRESSURE_UNIT, Defaults.pressureUnit);
+        pos2 = sp.getInt(Preferences.TEMPERATURE_UNIT, Defaults.temperatureUnit);
     }
 
     @Override
@@ -509,16 +510,16 @@ public class SettingsActivity extends AppCompatActivity{
     }
 
     public void revertSettings(){
-        ((RadioButton) rg1.getChildAt(0)).setChecked(true);
-        ((RadioButton) rg2.getChildAt(0)).setChecked(true);
-        pro1 = 40;
-        pro2 = 22;
-        pro3 = 10;
-        pro4 = 55;
-        pro5 = 22;
+        ((RadioButton) rg1.getChildAt(Defaults.pressureUnit)).setChecked(true);
+        ((RadioButton) rg2.getChildAt(Defaults.temperatureUnit)).setChecked(true);
+        pro1 = Defaults.maxPressure;
+        pro2 = Defaults.minPressure;
+        pro3 = Defaults.maxPressureLeak;
+        pro4 = Defaults.maxTemperature;
+        pro5 = Defaults.minVoltage;
 
-        seekbar_range_pos1(0);
-        seekbar_range_pos2(0);
+        seekbar_range_pos1(Defaults.pressureUnit);
+        seekbar_range_pos2(Defaults.temperatureUnit);
 
         sk1.setProgress(pro1);
         sk2.setProgress(pro2);

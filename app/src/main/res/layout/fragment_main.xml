@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingLeft="@dimen/_7sdp"
-                    android:text="123"
+                    android:text="@string/triple_dash"
                     android:textSize="@dimen/_36sdp"
                     android:textStyle="bold"
                     android:textColor="@color/Green"/>
@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingLeft="@dimen/_7sdp"
-                    android:text="34"
+                    android:text="@string/double_dash"
                     android:textSize="@dimen/_30sdp"
                     android:textStyle="bold"
                     android:textColor="@color/Green"/>
@@ -146,7 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingRight="@dimen/_7sdp"
-                    android:text="200"
+                    android:text="@string/triple_dash"
                     android:textSize="@dimen/_36sdp"
                     android:textStyle="bold"
                     android:textColor="@color/Green"/>
@@ -173,7 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingRight="@dimen/_7sdp"
-                    android:text="34"
+                    android:text="@string/double_dash"
                     android:textSize="@dimen/_30sdp"
                     android:textStyle="bold"
                     android:textColor="@color/Green"/>
@@ -205,7 +205,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingLeft="@dimen/_7sdp"
-                    android:text="44"
+                    android:text="@string/double_dash"
                     android:textSize="@dimen/_30sdp"
                     android:textStyle="bold"
                     android:textColor="@color/Green"/>
@@ -230,7 +230,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingLeft="@dimen/_7sdp"
-                    android:text="157"
+                    android:text="@string/triple_dash"
                     android:textSize="@dimen/_36sdp"
                     android:textStyle="bold"
                     android:textColor="@color/Green"/>
@@ -295,7 +295,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingRight="@dimen/_7sdp"
-                    android:text="45"
+                    android:text="@string/double_dash"
                     android:textSize="@dimen/_30sdp"
                     android:textStyle="bold"
                     android:textColor="@color/Green"/>
@@ -321,7 +321,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingRight="@dimen/_7sdp"
-                    android:text="190"
+                    android:text="@string/triple_dash"
                     android:textSize="@dimen/_36sdp"
                     android:textStyle="bold"
                     android:textColor="@color/Green"/>
@@ -394,7 +394,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:paddingLeft="@dimen/_7sdp"
-                            android:text="143"
+                            android:text="@string/triple_dash"
                             android:textSize="@dimen/_36sdp"
                             android:textStyle="bold"
                             android:textColor="@color/Green"/>
@@ -414,7 +414,7 @@
                             android:layout_height="match_parent"
                             android:gravity="bottom"
                             android:paddingLeft="@dimen/_7sdp"
-                            android:text="66"
+                            android:text="@string/double_dash"
                             android:textSize="@dimen/_30sdp"
                             android:textStyle="bold"
                             android:textColor="@color/Green"/>
@@ -461,5 +461,10 @@
             android:layout_height="0dp"
             android:layout_weight=".24"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/data_textview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

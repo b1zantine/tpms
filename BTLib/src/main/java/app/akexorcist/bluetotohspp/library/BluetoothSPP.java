@@ -224,10 +224,11 @@ public class BluetoothSPP {
         isAutoConnectionEnabled = false;
     }
     
-    public void connect(Intent data) {
+    public String connect(Intent data) {
         String address = data.getExtras().getString(BluetoothState.EXTRA_DEVICE_ADDRESS);
         BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
         mChatService.connect(device);
+        return address;
     }
     
     public void connect(String address) {
