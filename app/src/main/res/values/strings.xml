@@ -15,4 +15,5 @@
     <string name="double_dash">--</string>
     <string name="triple_dash">---</string>
     <string name="revert_settings">Revert</string>
+    <string name="title_activity_splash">SplashActivity</string>
 </resources>

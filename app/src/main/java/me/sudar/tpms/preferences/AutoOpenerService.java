@@ -14,15 +14,15 @@ import android.os.SystemClock;
 
 import me.sudar.tpms.MainActivity;
 
-public class MyService extends Service implements SensorEventListener {
+public class AutoOpenerService extends Service implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor axel;
     private long lastUpdate = 0;
     private float last_x, last_y, last_z;
-    private static final int SHAKE_THRESHOLD = 600;
+    private static final int SHAKE_THRESHOLD = 20000;
 
-    public MyService() {
+    public AutoOpenerService() {
     }
 
     @Override
@@ -34,7 +34,6 @@ public class MyService extends Service implements SensorEventListener {
     @Override
     public void onCreate() {
         super.onCreate();
-
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         axel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(this, axel , SensorManager.SENSOR_DELAY_NORMAL);

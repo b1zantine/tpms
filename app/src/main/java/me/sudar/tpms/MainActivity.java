@@ -22,7 +22,7 @@ import app.akexorcist.bluetotohspp.library.BluetoothSPP;
 import app.akexorcist.bluetotohspp.library.BluetoothState;
 import app.akexorcist.bluetotohspp.library.DeviceList;
 import me.sudar.tpms.preferences.Defaults;
-import me.sudar.tpms.preferences.MyService;
+import me.sudar.tpms.preferences.AutoOpenerService;
 import me.sudar.tpms.preferences.Preferences;
 
 
@@ -315,9 +315,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
 
-        Intent i= new Intent(this, MyService.class);
+        Intent i= new Intent(this, AutoOpenerService.class);
         this.startService(i);
 
         sp = getSharedPreferences(Preferences.PREFERENCES_NAME, Context.MODE_PRIVATE);
@@ -418,8 +419,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         bt.stopService();
     }
 
