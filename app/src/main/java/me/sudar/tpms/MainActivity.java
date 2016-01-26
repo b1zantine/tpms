@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 import app.akexorcist.bluetotohspp.library.BluetoothSPP;
 import app.akexorcist.bluetotohspp.library.BluetoothState;
 import app.akexorcist.bluetotohspp.library.DeviceList;
@@ -33,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sp;
     private int maxPressure, minPressure, maxPressureLeak, maxTemperature, minVoltage, pressureUnit, temperatureUnit;
     private boolean carInDanger = false;
+    private ArrayList<Integer> frontLeftList = new ArrayList<>(12);
+    private ArrayList<Integer> frontRightList = new ArrayList<>();
+    private ArrayList<Integer> rearLeftList = new ArrayList<>();
+    private ArrayList<Integer> rearRightList = new ArrayList<>();
+    private ArrayList<Integer> spareList =  new ArrayList<>();
 
     private BluetoothSPP bt = new BluetoothSPP(this);
     private BluetoothSPP.OnDataReceivedListener  btListener = new BluetoothSPP.OnDataReceivedListener() {
@@ -57,11 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void parseData(int[] dataCapsule){
         carInDanger = false;
+
         frontLeft(pressConversion(dataCapsule[0]), tempConversion(dataCapsule[1]), dataCapsule[2]);
         frontRight(pressConversion(dataCapsule[3]), tempConversion(dataCapsule[4]), dataCapsule[5]);
         rearLeft(pressConversion(dataCapsule[6]), tempConversion(dataCapsule[7]), dataCapsule[8]);
         rearRight(pressConversion(dataCapsule[9]), tempConversion(dataCapsule[9]), dataCapsule[11]);
         spare(pressConversion(dataCapsule[12]), tempConversion(dataCapsule[13]), dataCapsule[14]);
+
         if(carInDanger)
             ((ImageView)findViewById(R.id.car)).setImageResource(R.drawable.car_red);
         else
@@ -69,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void frontLeft(int press, int temp, int volt){
+        int fleak = 0;
         TextView tv = (TextView) findViewById(R.id.pressure_value_fl);
         tv.setText(press + "");
         if(press > maxPressure){
@@ -82,6 +92,16 @@ public class MainActivity extends AppCompatActivity {
         }else{
             tv.setTextColor(getResources().getColor(R.color.Green));
             ((ImageView)findViewById(R.id.pressure_icon_fl)).setImageResource(R.drawable.n);
+        }
+
+        frontLeftList.add(press);
+        if(frontLeftList.size()==12){
+            fleak = (frontLeftList.get(11) - frontLeftList.get(0))/12;
+            frontLeftList.remove(0);
+            if(fleak > maxPressureLeak){
+                ((ImageView)findViewById(R.id.pressure_leak_icon_fl)).setImageResource(R.drawable.fleak_red);
+                carInDanger = true;
+            }
         }
 
         tv = (TextView) findViewById(R.id.temp_value_fl);
@@ -102,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void frontRight(int press, int temp, int volt){
+        int fleak = 0;
         TextView tv = (TextView) findViewById(R.id.pressure_value_fr);
         tv.setText(press + "");
         if(press > maxPressure){
@@ -115,6 +136,16 @@ public class MainActivity extends AppCompatActivity {
         }else{
             tv.setTextColor(getResources().getColor(R.color.Green));
             ((ImageView)findViewById(R.id.pressure_icon_fr)).setImageResource(R.drawable.n);
+        }
+
+        frontRightList.add(press);
+        if(frontRightList.size()==12){
+            fleak = (frontRightList.get(11) - frontRightList.get(0))/12;
+            frontRightList.remove(0);
+            if(fleak > maxPressureLeak){
+                ((ImageView)findViewById(R.id.pressure_leak_icon_fr)).setImageResource(R.drawable.fleak_red);
+                carInDanger = true;
+            }
         }
 
         tv = (TextView) findViewById(R.id.temp_value_fr);
@@ -135,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void rearLeft(int press, int temp, int volt){
+        int fleak = 0;
         TextView tv = (TextView) findViewById(R.id.pressure_value_rl);
         tv.setText(press + "");
         if(press > maxPressure){
@@ -148,6 +180,16 @@ public class MainActivity extends AppCompatActivity {
         }else{
             tv.setTextColor(getResources().getColor(R.color.Green));
             ((ImageView)findViewById(R.id.pressure_icon_rl)).setImageResource(R.drawable.n);
+        }
+
+        rearLeftList.add(press);
+        if(rearLeftList.size()==12){
+            fleak = (rearLeftList.get(11) - rearLeftList.get(0))/12;
+            rearLeftList.remove(0);
+            if(fleak > maxPressureLeak){
+                ((ImageView)findViewById(R.id.pressure_leak_icon_rl)).setImageResource(R.drawable.fleak_red);
+                carInDanger = true;
+            }
         }
 
         tv = (TextView) findViewById(R.id.temp_value_rl);
@@ -168,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void rearRight(int press, int temp, int volt){
+        int fleak = 0;
         TextView tv = (TextView) findViewById(R.id.pressure_value_rr);
         tv.setText(press + "");
         if(press > maxPressure){
@@ -181,6 +224,16 @@ public class MainActivity extends AppCompatActivity {
         }else{
             tv.setTextColor(getResources().getColor(R.color.Green));
             ((ImageView)findViewById(R.id.pressure_icon_rr)).setImageResource(R.drawable.n);
+        }
+
+        rearRightList.add(press);
+        if(rearRightList.size()==12){
+            fleak = (rearRightList.get(11) - rearRightList.get(0))/12;
+            rearRightList.remove(0);
+            if(fleak > maxPressureLeak){
+                ((ImageView)findViewById(R.id.pressure_leak_icon_rr)).setImageResource(R.drawable.fleak_red);
+                carInDanger = true;
+            }
         }
 
         tv = (TextView) findViewById(R.id.temp_value_rr);
@@ -201,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void spare(int press, int temp, int volt){
+        int fleak = 0;
         TextView tv = (TextView) findViewById(R.id.pressure_value_spare);
         tv.setText(press + "");
         if(press > maxPressure){
@@ -212,6 +266,16 @@ public class MainActivity extends AppCompatActivity {
         }else{
             tv.setTextColor(getResources().getColor(R.color.Green));
             ((ImageView)findViewById(R.id.pressure_icon_spare)).setImageResource(R.drawable.n);
+        }
+
+        spareList.add(press);
+        if(spareList.size()==12){
+            fleak = (spareList.get(11) - spareList.get(0))/12;
+            spareList.remove(0);
+            if(fleak > maxPressureLeak){
+                ((ImageView)findViewById(R.id.pressure_leak_icon_spare)).setImageResource(R.drawable.fleak_red);
+                carInDanger = true;
+            }
         }
 
         tv = (TextView) findViewById(R.id.temp_value_spare);
