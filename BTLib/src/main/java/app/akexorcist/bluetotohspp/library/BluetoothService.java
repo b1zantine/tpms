@@ -375,14 +375,11 @@ public class BluetoothService {
 //                        arr_byte.add(data);
 //                    }
                     counter = (counter + 1) % 15;
-                    Thread.sleep(200);
                 } catch (IOException e) {
                     connectionLost();
                     // Start the service over to restart listening mode
                     BluetoothService.this.start(BluetoothService.this.isAndroid);
                     break;
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
         }

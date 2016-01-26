@@ -11,7 +11,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:multiprocess="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -21,14 +22,20 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName="me.sudar.tpms.MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="me.sudar.tpms.MainActivity" />
-
+                android:value="me.sudar.tpms.MainActivity"/>
         </activity>
+
+        <service
+            android:name=".preferences.MyService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>

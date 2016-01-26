@@ -17,4 +17,9 @@ public class TpmsApp extends Application {
     public static void setDeviceAddress(String deviceAddress) {
         TpmsApp.deviceAddress = deviceAddress;
     }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
 }

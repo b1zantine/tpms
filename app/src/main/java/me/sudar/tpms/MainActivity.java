@@ -17,19 +17,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import app.akexorcist.bluetotohspp.library.BluetoothSPP;
 import app.akexorcist.bluetotohspp.library.BluetoothState;
 import app.akexorcist.bluetotohspp.library.DeviceList;
 import me.sudar.tpms.preferences.Defaults;
+import me.sudar.tpms.preferences.MyService;
 import me.sudar.tpms.preferences.Preferences;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private int counter = 0;
-    private TextView dataTextView;
     private SharedPreferences sp;
     private int maxPressure, minPressure, maxPressureLeak, maxTemperature, minVoltage, pressureUnit, temperatureUnit;
     private boolean carInDanger = false;
@@ -44,10 +42,8 @@ public class MainActivity extends AppCompatActivity {
             while (i < data.length){
                 Byte b = data[i];
                 dataCapsule[counter] = b.intValue();
-                dataTextView.setText(dataTextView.getText() + "" + dataCapsule[counter] + " " );
                 if((counter+1) % 15 == 0) {
                     parseData(dataCapsule);
-                    dataTextView.setText(dataTextView.getText() + "\n");
                 }
                 counter = (counter + 1) % 15;
                 i++;
@@ -60,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         frontLeft(pressConversion(dataCapsule[0]), tempConversion(dataCapsule[1]), dataCapsule[2]);
         frontRight(pressConversion(dataCapsule[3]), tempConversion(dataCapsule[4]), dataCapsule[5]);
         rearLeft(pressConversion(dataCapsule[6]), tempConversion(dataCapsule[7]), dataCapsule[8]);
-        rearRight(pressConversion(dataCapsule[9]), tempConversion(dataCapsule[9]), dataCapsule[11]);
+        rearRight(pressConversion(dataCapsule[9]), tempConversion(dataCapsule[10]), dataCapsule[11]);
         spare(pressConversion(dataCapsule[12]), tempConversion(dataCapsule[13]), dataCapsule[14]);
         if(carInDanger)
             ((ImageView)findViewById(R.id.car)).setImageResource(R.drawable.car_red);
@@ -86,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv = (TextView) findViewById(R.id.temp_value_fl);
         tv.setText(temp + "");
-        if(press > maxTemperature){
+        if(temp > maxTemperature){
             tv.setTextColor(getResources().getColor(R.color.WarningRed));
             ((ImageView)findViewById(R.id.temperature_icon_fl)).setImageResource(R.drawable.temp_red);
             carInDanger = true;
@@ -119,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv = (TextView) findViewById(R.id.temp_value_fr);
         tv.setText(temp + "");
-        if(press > maxTemperature){
+        if(temp > maxTemperature){
             tv.setTextColor(getResources().getColor(R.color.WarningRed));
             ((ImageView)findViewById(R.id.temperature_icon_fr)).setImageResource(R.drawable.temp_red);
             carInDanger = true;
@@ -152,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv = (TextView) findViewById(R.id.temp_value_rl);
         tv.setText(temp + "");
-        if(press > maxTemperature){
+        if(temp > maxTemperature){
             tv.setTextColor(getResources().getColor(R.color.WarningRed));
             ((ImageView)findViewById(R.id.temperature_icon_rl)).setImageResource(R.drawable.temp_red);
             carInDanger = true;
@@ -185,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv = (TextView) findViewById(R.id.temp_value_rr);
         tv.setText(temp + "");
-        if(press > maxTemperature){
+        if(temp > maxTemperature){
             tv.setTextColor(getResources().getColor(R.color.WarningRed));
             ((ImageView)findViewById(R.id.temperature_icon_rr)).setImageResource(R.drawable.temp_red);
             carInDanger = true;
@@ -216,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv = (TextView) findViewById(R.id.temp_value_spare);
         tv.setText(temp + "");
-        if(press > maxTemperature){
+        if(temp > maxTemperature){
             tv.setTextColor(getResources().getColor(R.color.WarningRed));
             ((ImageView)findViewById(R.id.temperature_icon_spare)).setImageResource(R.drawable.temp_red);
         }else{
@@ -232,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
 
     public int pressConversion(int press){
         if(pressureUnit == 0) return press;
-        else if (pressureUnit == 1) return (int) Math.ceil(press * 0.0689);
+        else if (pressureUnit == 1) return (int) (press * 0.0689);
         else return (int) (press * 6.89);
     }
 
@@ -258,7 +254,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        dataTextView = (TextView)findViewById(R.id.data_textview);
+        Intent i= new Intent(this, MyService.class);
+        this.startService(i);
+
         sp = getSharedPreferences(Preferences.PREFERENCES_NAME, Context.MODE_PRIVATE);
         loadData();
 
@@ -299,7 +297,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             if(!bt.isServiceAvailable()) {
                 bt.setupService();
-                bt.startService(BluetoothState.DEVICE_ANDROID);
+                bt.startService(BluetoothState.DEVICE_OTHER);
                 if(TpmsApp.deviceAddress == null){
                     Intent intent = new Intent(getApplicationContext(), DeviceList.class);
                     startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE);
@@ -338,7 +336,7 @@ public class MainActivity extends AppCompatActivity {
         } else if(requestCode == BluetoothState.REQUEST_ENABLE_BT) {
             if(resultCode == Activity.RESULT_OK) {
                 bt.setupService();
-                bt.startService(BluetoothState.DEVICE_ANDROID);
+                bt.startService(BluetoothState.DEVICE_OTHER);
                 if(TpmsApp.deviceAddress == null){
                     Intent intent = new Intent(getApplicationContext(), DeviceList.class);
                     startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE);
